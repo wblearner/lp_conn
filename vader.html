@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+
+		<title>Linkin Park Connect</title>
+		
+		
+		<!-- PopAds.net Popunder Code for lpcon.nekt.me -->
+
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+		<link rel="stylesheet" href="styles.css"/>
+
+		<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+		
+			
+	</head>
+
+	<body>
+	
+		<div class="demos page">
+      
+<a href="http://www.fast2earn.com/exch_share_info.php?stockid=KYH"><img src="http://www.fast2earn.com/services/get_share_image.php?stockid=KYH" border="0" title="Click to support this site">
+			
+			<div class="content">
+			<h1 style="text-align:center"><a href="http://adtrackone.eu/go.php?a_aid=56792bba2a878">Linkin Park Latest News</a></h1>
+			
+			
+			<!----------------------------------------------------------------/
+				 jQuery Feeds Demo
+			/----------------------------------------------------------------->
+			
+			<!-- Define the container --> 
+			<div class="feed">&nbsp;</div>
+			
+			<!-- Define the entries' template inside a script tag.
+				 Set it's *type* to *text/html* and assign it an *id*.
+				 You can print the entry's properties by writting their name inside <!= !>. -->
+			<script type="text/html" id="entryTmpl">
+				<article class="<!=source!> entry">
+					<p>
+						<a class="link" href="<!=feedLink!>" title="<!=feedDescription!>"><!=feedTitle!></a>
+						<! if (publishedDate) { !><span class="publishedDate"><!=publishedDate!></span><! } !></p>
+					<p class="author"><!=author!></p>
+					<div class="content"><!=content!></div>
+				</article>
+			</script>
+			
+			<!-- Got to the bottom of the source to check the scripts. -->
+			
+			<!----------------------------------------------------------------/
+			/----------------------------------------------------------------->
+
+			</div>
+		</div>
+		
+		
+
+		<!-- Include jQuery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+		<!-- Include site script -->
+		<script src="site.js"></script>
+
+		
+		<!-- Load jQuery Feeds -->
+		<script src="jquery.feeds.js" charset="utf-8"></script>
+		
+		<!-- Load moment.js, used to format dates, totally optional -->
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/1.6.2/moment.min.js" charset="utf-8"></script>
+		
+		<!-- Using Pure CSS Masonry which is not supported by IE. Fallback: original lib. -->
+		<!--[if lte IE 9]><script src="http://cdnjs.cloudflare.com/ajax/libs/masonry/2.1.04/jquery.masonry.min.js"></script><![endif]-->
+		
+		<script>
+			$(document).ready(function() {
+				
+				/* ==================================================================
+				   Demo scripts
+				   ================================================================== */
+				
+				// Attach feeds to container - $( container ).feeds({ options...});
+				$('.feed').feeds({
+					
+					// Feeds: Set keys and paths of feeds
+					feeds : {
+	
+						bing_news : 'http://www.bing.com/news/search?q=linkin+park&FORM=HDRSC6&format=rss',
+						bing: 'http://www.bing.com/search?q=linkin+park&go=Submit&qs=n&form=QBLH&pq=linkin+park&sc=0-0&sp=-1&sk=&cvid=571A70D3D9AB490C83286776AE5CA715&format=rss'
+					},
+					
+					// Preprocess: manipulated entries data before it's rendered
+					preprocess : function(feed) {
+						// Inside the callback 'this' corresponds to the entry being processed
+						
+						if (!this.publishedDate) {
+							return;
+						}
+						
+						// Example: Using moment.js to format dates as time ago, totally optional.
+						this.publishedDate = moment(this.publishedDate).fromNow();
+					},
+					
+					// entryTemplate: template used to render entries. Can be a string, an id or a callback.
+					// Using the id of the template defined in the markup.
+					entryTemplate : 'entryTmpl',
+					
+					// loadingTemplate: template used to show while entries are being retrieved. Can be a string, an id or a callback.
+					loadingTemplate: '<p class="loading entry">Loading entries, hold on.</p>',
+					
+					// onComplete: called when all entries are rendered.
+					onComplete : function(entries) {
+						// Setting all links as external.
+						// Inside the callback 'this' corresponds to the feeds' container.
+						$(this).find('a').attr('target', '_blank');
+						
+						// Pure CSS Masonry fallback for IE
+						if ($.browser.msie && parseInt($.browser.version.substr(0, 1)) < 10) {
+							$('.feed').masonry({
+								gutterWidth: 12
+							});
+						}
+						
+						// Tracking outbound links, ignore
+						$(this).find('a').click(function() {
+							
+						});
+					}
+				});
+			});
+			$(window).load(function()
+			{
+				$('body').trigger('click');
+			});
+		</script>
+
+	</body>
+</html>
+
